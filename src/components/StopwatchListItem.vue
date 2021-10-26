@@ -9,7 +9,8 @@
       </div>
     </div>
     <div>
-      <button>Start</button>
+      <button v-if="!running" @click="handleStart"> {{ time > 0 ? 'Continue' : 'Start' }} </button>
+      <button v-if="running" @click="handlePause"> Pause </button>
     </div>
     <button class="close-btn box-shadow bold">&#10005;</button>
   </div>
@@ -28,7 +29,22 @@ export default {
       id: this.stopwatch.id,
       title: this.stopwatch.title,
       time: this.stopwatch.time,
-      displayTime: Time.toHHMMSS(this.stopwatch.time)
+      running: this.stopwatch.running,
+      displayTime: Time.toHHMMSS(this.stopwatch.time),
+      timerInterval: '',
+    }
+  },
+  methods: {
+    handleStart: function() {
+      this.running = true;
+      this.timerInterval = setInterval(() => {
+        this.time++;
+        this.displayTime = Time.toHHMMSS(this.time);
+      }, 1000);
+    },
+    handlePause: function() {
+      this.running = false;
+      clearInterval(this.timerInterval);
     }
   }
 }
