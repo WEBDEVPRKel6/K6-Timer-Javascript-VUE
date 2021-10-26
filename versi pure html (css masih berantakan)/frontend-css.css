@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle&family=Roboto&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.played {
+    margin: 0 auto;
+    max-width: 1170px;
+    padding: 0 15px;
+    float: left;
+    width: 50%;
+    min-height: 100vh
+}
+
+.sticky-main {
+	bottom: 0;
+	color: #000000;
+	position: sticky;
+}
+
+.main {
+    background-color: #A2D7D4;
+    text-align: center;
+}
+
+.list {
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+#stopwatch-value {
+    
+}
+
+.circle {
+    height: 100px;
+    width: 100px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    margin: auto;
+    padding: 10px;
+}
+
+.rectangle {
+    background-color: #6990AF;
+    border-radius: 7%;
+}
+
+.title {
+
+}
+
+.title-input {
+
+}
+
+.start-btn {
+    background-color: #FFFFFF;
+}
+
+.stop-btn {
+    background-color: #FFFFFF;
+}
+
+.delete-btn {
+    background-color: #FFFFFF;
+}
+
+.reset-btn {
+    background-color: #FFFFFF;
+}
+
+.stopwatch-title {
+
+}
+
+.stopwatch-list {
+    text-align: left;
+}
+
+.start {
+
+}
+
+.red-font {
+    color: #DB7074;
+}
+
+.delete-icon {
+
+}
+
+.space-between {
+    justify-content: space-between;
+}

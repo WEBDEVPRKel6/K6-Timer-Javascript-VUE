@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch - K6</title>
+    <link rel="stylesheet" href="frontend-css.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <main class="sticky-main">
+      <div class="played main">
+        <h3 class="title">Title</h3>
+        <div class="center circle">
+          <p id="stopwatch-value">00:00:00</p>
+        </div>
+        <div class="space-between">
+          <button class="start-btn">Continue</button>
+          <button class="stop-btn">Stop</button>
+          <button class="delete-btn red-font">Delete</button>
+        </div>
+      </div>
+      <div class="played list">
+        <div>
+          <button class="reset-btn red-font">Reset All</button>
+        </div>
+        <div class="title-input">
+          <form>
+            <input type="text" placeholder="Give your Title">
+            <button type="submit">Add</button>
+          </form>
+        </div>
+        <div class="stopwatch-list">
+          <div class="stopwatch">
+            <div class="stopwatch rectangle">
+              <div class="delete-icon">
+                <button class="fa fa-close"></button>
+              </div>
+              <div class="stopwatch-title">
+                <p>Title</p>
+              </div>
+              <div class="stopwatch-title">
+                <p id="stopwatch-value">00:00:00</p>
+              </div>
+              <div class="start">
+                <button class="start-btn">Start</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
