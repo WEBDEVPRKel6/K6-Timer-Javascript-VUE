@@ -1,7 +1,7 @@
 <template>
   <div class="container-center-horizontal">
     <div class="layout screen">
-      <div class="main-calculator">
+      <div class="main-stopwatch">
         <div class="group-1">
           <div class="title-1 valign-text-middle">Title</div>
           <div class="center circle">
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="list-calculator">
+      <div class="list-stopwatch">
         <div class="flex-row">
           <div class="flex-col">
             <div class="overlap-group-2">
@@ -66,7 +66,7 @@ export default {
   width: 1440px;
 }
 
-.main-calculator {
+.main-stopwatch {
   align-items: flex-end;
   background-color: #a1d6d4;
   display: flex;
@@ -174,7 +174,7 @@ export default {
   width: 113px;
 }
 
-.list-calculator {
+.list-stopwatch {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
