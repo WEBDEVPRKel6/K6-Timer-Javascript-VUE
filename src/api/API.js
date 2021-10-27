@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = "http://localhost:3000";
 
 export async function fetchData() {
   try {
@@ -18,7 +18,7 @@ export async function updateData(id, data) {
   }
 }
 
-export async function addStopwatch(data){
+export async function addStopwatch(data) {
   try {
     return axios.post(`${BASE_URL}/stopwatch`, data);
   } catch (error) {
@@ -26,9 +26,26 @@ export async function addStopwatch(data){
   }
 }
 
-export async function deleteStopwatch(id){
+export async function deleteStopwatch(id) {
   try {
     return axios.delete(`${BASE_URL}/stopwatch/delete/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteAllStopwatch() {
+  try {
+    return axios.delete(`${BASE_URL}/stopwatch/delete`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function resetTimeAll() {
+  try {
+    console.log("Masuk");
+    return axios.put(`${BASE_URL}/stopwatch/reset`);
   } catch (error) {
     console.log(error);
   }

@@ -84,11 +84,12 @@ export default {
       displayTime: Time.toHHMMSS(this.stopwatch.time),
       timerInterval: "",
       modalOpen: false,
-      // pls fix
+      // Menghitung waktu / lama ketika stopwatch ditutup.
       timeDifference: (new Date().getTime() - new Date(this.stopwatch.date).getTime()) / 1000,
     };
   },
   methods: {
+    // Handling action start stopwatch.
     handleStart: function() {
       this.running = true;
       this.timerInterval = setInterval(() => {
@@ -96,12 +97,12 @@ export default {
         this.displayTime = Time.toHHMMSS(this.time);
       }, 1000);
     },
+    // Handling action pause stopwatch.
     handlePause: function() {
       this.running = false;
       clearInterval(this.timerInterval);
-      
-      console.log(this.stopwatch);
     },
+    // Handling action delete stopwatch.
     handleDelete: async function(id){
       var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
       if (r == true) {
@@ -118,10 +119,12 @@ export default {
         
       }
     },
+    // Handling action nonParalel stopwatch [BUG]
     async handleNonParallel(id) {
       let stopwatchList = getIdList(id);
       return stopwatchList;
     },
+    // Handling action stop stopwatch.
     async handleStop() {
       if (this.time === 0) return;
 
@@ -145,6 +148,7 @@ export default {
 
       await updateData(this.id, data);
     },
+    // Function yang berfungsi melakukan update data ketika windows / tab ditutup (unload).
     async beforeUnload() {
       const data = {
         title: this.title,
@@ -161,8 +165,8 @@ export default {
     window.addEventListener("beforeunload", () => this.beforeUnload());
 
     if (this.running) {
-      // idk why this doesn't work
-      // this.time = this.time + this.timeDifference;
+      // harus dijadiin int, soalnya di database type data int, kalau koma error
+      this.time = this.time + parseInt(this.timeDifference);
       this.handleStart();
     }
   }

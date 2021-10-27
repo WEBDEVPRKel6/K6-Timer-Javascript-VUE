@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="mb2">
-      <button class="reset-btn box-shadow danger-red">Reset All</button>
+      <button class="m1r1 reset-btn box-shadow danger-red" @click="handleResetAll">
+        Reset All
+      </button>
+      <button class="reset-btn box-shadow danger-red" @click="handleDeleteAll">
+        Delete All
+      </button>
     </div>
     <div class="mb2">
       <div class="form">
@@ -21,8 +26,14 @@
 
 <script>
 import StopwatchListItem from "./StopwatchListItem.vue";
-import { fetchData, addStopwatch } from "../api/API";
+import {
+  fetchData,
+  addStopwatch,
+  resetTimeAll,
+  deleteAllStopwatch,
+} from "../api/API";
 
+// Mengambil data id dari stopwatch yang ada.
 let stopwatchList = [];
 export function delId(id){
   for(var i = 0; i < stopwatchList.length; i++){ 
@@ -32,6 +43,8 @@ export function delId(id){
   }
   console.log(stopwatchList);
 }
+
+// Delete elemen list id stopwatch.
 export function getIdList(){
   return stopwatchList;
 }
@@ -56,6 +69,7 @@ export default {
     console.log(stopwatchList);
   },
   methods: {
+    // Function tambah stopwatch.
     async tambahStopwatch(){
       const data = {
         title: this.titleText || "Untilted",
@@ -70,6 +84,23 @@ export default {
 
       this.refreshData();
     },
+    // Function reset semua stopwatch yang ada menjadi 0 dan false.
+    async handleResetAll() {
+      var r = confirm("Anda yakin reset semua stopwatch ? ");
+      if (r == true) {
+        await resetTimeAll();
+        this.refreshData();
+      }
+    },
+    // Function delete semua stopwatch yang ada.
+    async handleDeleteAll() {
+      var r = confirm("Anda yakin menghapus semua stopwatch ? ");
+      if (r == true) {
+        await deleteAllStopwatch();
+        this.refreshData();
+      }
+    },
+    // Function untuk refresh html ketika action terjadi.
     async refreshData(){
       const result = await fetchData();
       this.stopwatches = result.data;
