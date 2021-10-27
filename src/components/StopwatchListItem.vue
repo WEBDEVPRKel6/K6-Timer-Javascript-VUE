@@ -50,7 +50,7 @@
           <h1>{{ displayTime }}</h1>
         </div>
       </div>
-      <div>
+      <div @click="viewerActive = true">
         <transition name="fade" mode="out-in">
           <button v-if="!running" @click="handleStart" key="start">
             {{ time > 0 ? "Continue" : "Start" }}
@@ -98,6 +98,10 @@ export default {
       this.timerInterval = setInterval(() => {
         this.time++;
         this.displayTime = Time.toHHMMSS(this.time);
+        const data = {
+          time: this.time,
+        };
+        updateData(this.id, data);
       }, 1000);
     },
     // Handling action to pause the stopwatch.
