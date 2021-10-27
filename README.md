@@ -1,3 +1,28 @@
+# vue-stopwatch
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
 <!-- PROJECT SHIELDS -->
 # K6-Timer-Javascript-VUEJS 
 
@@ -174,4 +199,3 @@ Members
 [stars-url]: https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-VUE/stargazers
 [license-shield]: https://img.shields.io/github/license/WEBDEVPRKel6/K6-Timer-Javascript-VUE.svg?style=for-the-badge
 [license-url]: https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-VUE/blob/master/LICENSE.txt
-
