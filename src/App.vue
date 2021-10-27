@@ -16,6 +16,10 @@ export default {
 </script>
 
 <style>
+:root {
+  --danger-red: #DB7074;
+}
+
 body,
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -38,6 +42,10 @@ button {
   color: #3C4F6F;
 }
 
+.danger-red {
+  color: var(--danger-red);
+}
+
 .mb1 {
   margin-bottom: 1rem;
 }
@@ -46,8 +54,23 @@ button {
   margin-bottom: 2rem;
 }
 
+.mb4 {
+  margin-bottom: 4rem;
+}
+
+.mlr1 {
+  margin: 0 1rem;
+}
+
 .bold {
   font-weight: 700;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .box-shadow {
@@ -86,5 +109,22 @@ button {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

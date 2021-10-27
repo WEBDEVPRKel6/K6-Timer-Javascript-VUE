@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="mb2">
-      <button class="reset-btn box-shadow">Reset All</button>
+      <button class="reset-btn box-shadow danger-red">Reset All</button>
     </div>
     <div class="mb2">
       <form>
@@ -9,9 +9,9 @@
         <button class="gradient box-shadow" type="submit">+</button>
       </form>
     </div>
-    <div>
+    <transition-group name="list" tag="div">
       <StopwatchListItem :stopwatch="stopwatch" v-for="stopwatch in stopwatches" :key="stopwatch.id"/>
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -48,7 +48,6 @@ export default {
   padding: 0.4rem 2rem;
   background: #ffff;
   border: none;
-  color: #DB7074;
   border-radius: 3px;
   font-family: 'Roboto', sans-serif;
 }
