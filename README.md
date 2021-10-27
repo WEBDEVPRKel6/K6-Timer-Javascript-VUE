@@ -91,7 +91,7 @@ This application can help you calculate the amount of time to do your task, so y
 4. To pause the stopwatch, you can click the `Pause` button.
 5. To stop the stopwatch, you can click the `Stop` button.
 6. You can also delete the stopwatch by clicking the `Delete` button.
-7. You can delete all current stopwatch by clicking `Delete All` button.
+7. You can reset all current stopwatch by clicking `Reset All` button.
 
 <!-- ROADMAP -->
 ## Roadmap
