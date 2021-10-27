@@ -23,6 +23,19 @@
 import StopwatchListItem from "./StopwatchListItem.vue";
 import { fetchData, addStopwatch } from "../api/API";
 
+let stopwatchList = [];
+export function delId(id){
+  for(var i = 0; i < stopwatchList.length; i++){ 
+    if (id == stopwatchList[i]){
+      stopwatchList.splice(i,1);
+    }
+  }
+  console.log(stopwatchList);
+}
+export function getIdList(){
+  return stopwatchList;
+}
+
 export default {
   name: "StopwatchList",
   components: {
@@ -34,14 +47,13 @@ export default {
       stopwatchTitleInput: "Untitled",
       titleText: "",
       // StopwatchList buat list data Stopwatch delete tanpa relod
-      stopwatchList: []
     };
   },
   async created() {
     const result = await fetchData();
     this.stopwatches = result.data;
-    this.stopwatchList = result.data.map((stopwatch) => stopwatch.id);
-    console.log(this.stopwatchList);
+    stopwatchList = result.data.map((stopwatch) => stopwatch.id);
+    console.log(stopwatchList);
   },
   methods: {
     async tambahStopwatch(){
@@ -61,8 +73,7 @@ export default {
     async refreshData(){
       const result = await fetchData();
       this.stopwatches = result.data;
-      this.stopwatchList = result.data.map((stopwatch) => stopwatch.id);
-      console.log(this.stopwatchList);
+      stopwatchList = result.data.map((stopwatch) => stopwatch.id);
     }
   }
 };

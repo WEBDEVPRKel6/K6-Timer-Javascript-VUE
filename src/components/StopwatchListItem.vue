@@ -6,7 +6,7 @@
           <h4>{{ title }}</h4>
         </div>
         <div>
-          <h1>{{ displayTime }}</h1>
+          <h1 id="stopwatch-value-box">{{ displayTime }}</h1>
         </div>
       </div>
       <div>
@@ -25,8 +25,11 @@
         <div class="mb4">
           <h1>{{ title }}</h1>
         </div>
-        <div class="circle mb4 flex-center">
+        <div id="stopwatch-value-circle" class="circle mb4 flex-center">
           <h1>{{ displayTime }}</h1>
+        </div>
+        <div class="mb4">
+          <h1 id="textStop"></h1>
         </div>
         <div class="mb4">
           <transition name="fade" mode="out-in">
@@ -47,7 +50,7 @@
               Pause
             </button>
           </transition>
-          <button class="mlr1" @click="handleStart">Stop</button>
+          <button class="mlr1" @click="handleStop">Stop</button>
           <button class="mlr1 danger-red" @click="handleStart">Delete</button>
         </div>
         <button
@@ -64,6 +67,7 @@
 
 <script>
 import { updateData, deleteStopwatch } from "../api/API";
+import { delId, getIdList } from "./StopwatchList.vue";
 import Time from "../utils/time";
 
 export default {
@@ -95,18 +99,51 @@ export default {
     handlePause: function() {
       this.running = false;
       clearInterval(this.timerInterval);
+      
+      console.log(this.stopwatch);
     },
     handleDelete: async function(id){
       var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
       if (r == true) {
         this.handlePause();
         await deleteStopwatch(id);
+
         // destroy the vue listeners, etc
         this.$destroy();
 
         // remove the element from the DOM 
         this.$el.parentNode.removeChild(this.$el);
+
+        delId(id);
+        
       }
+    },
+    async handleNonParallel(id) {
+      let stopwatchList = getIdList(id);
+      return stopwatchList;
+    },
+    async handleStop() {
+      if (this.time === 0) return;
+
+      document.querySelector("#textStop").innerText = `Timer ${
+        this.time
+      } sudah berjalan selama ${Time.toHHMMSS(this.time)}`;
+
+      this.running = false;
+      this.time = 0;
+      document.querySelector("#stopwatch-value-box").innerText = Time.toHHMMSS(
+        this.time
+      );
+      document.querySelector("#stopwatch-value-circle").innerText = Time.toHHMMSS(
+        this.time
+      );
+
+      const data = {
+        running : false,
+        time : 0
+      }
+
+      await updateData(this.id, data);
     },
     async beforeUnload() {
       const data = {
