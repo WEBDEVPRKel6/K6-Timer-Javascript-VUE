@@ -6,6 +6,25 @@
 [![Stargazers][stars-shield]][stars-url]
 [![MIT License][license-shield]][license-url]
 
+
+<!-- Logo -->
+
+<br />
+<div align="center">
+  <a href="https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-VUE">
+    <img src="icon.png" alt="Logo" width="70" height="70">
+  </a>
+
+  <h3 align="center">Stopwatch - The 6th Group</h3>
+
+  <p align="center">
+    This stopwatch will help you to manage your time!
+    <br />
+    <a href="https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-VUE"><strong>Open Application »</strong></a>
+    <br />
+  </p>
+</div>
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
@@ -42,19 +61,22 @@ This project is a mini project as an assignment for the Web Development course. 
 * Adding a name to each stopwatch.
 * Pause & continue stopwatch.
 * Deleting stopwatch.
-* Reset all stopwatch.
+* Reset all stopwatch. (New feature)
 * Running in background. The stopwatch will still run even if you close the tab.
 
 This project still needs some improvements and we are still working on it. We accept constructive criticism and suggestions to improve the quality of the stopwatch that we make.
 
 ### Built With
 
-Instead of frameworks, we are using pure Javascript (Vanilla Javascript). 
+In this mini project, we use several tools, those are:
 We are using:
 * HTML
 * CSS
-* VUE JS
 * axios
+* NodeJS (for Backend)
+* VueJS (for Frontend)
+* PostgreSQL (for Database)
+* Sequelize
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -96,11 +118,13 @@ This application can help you calculate the amount of time to do your task, so y
 
 <!-- ROADMAP -->
 ## Roadmap
-- [x] Analyze the requirement
-- [x] Developing HTML and CSS
-- [x] Adding the VUE Js
+- [x] Analyze the requirement.
+- [x] Design the interface.
+- [x] Developing HTML and CSS.
+- [x] Adding the VueJS.
 - [x] Adding the buttons.
 - [x] Connecting to the database.
+- [x] Adding some features.
 - [x] Fixing some bug.  
 
 See the [open issues](https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-VUE/issues) for a full list of proposed features (and known issues).
