@@ -109,7 +109,7 @@ We are using:
 
 1. Clone the repo
      ```sh
-	git clone https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-Frontend.git
+	git clone https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-VUE.git
     ```
 2. Install all dependencies
     ```sh
@@ -117,12 +117,12 @@ We are using:
     ```
 3. Start dev server
     ```sh
-    npm run start-dev
+    npm run serve
     ```
     Open your web-browser and access localhost in 8080 port
 4. run 
     ```sh
-    npm run serve
+    npm run dev
     ```
 5. the build will be in `/dist` folder.
 
