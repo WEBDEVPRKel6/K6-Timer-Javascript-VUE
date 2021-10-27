@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="mb2">
-      <button class="reset-btn box-shadow danger-red">Reset All</button>
+      <button class="reset-btn box-shadow danger-red" @click="resetAllStopwatch()">Reset All</button>
     </div>
     <div class="mb2">
       <form>
-        <input class="box-shadow" type="text" placeholder="Title" />
-        <button class="gradient box-shadow" type="submit">+</button>
+        <input class="box-shadow" type="text" v-model="stopwatchTitleInput" placeholder="Untitled" />
+        <button class="gradient box-shadow" @click="addStopwatch()">+</button>
       </form>
     </div>
     <transition-group name="list" tag="div">
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import http from "../http";
 import StopwatchListItem from './StopwatchListItem.vue'
 
 export default {
@@ -27,13 +27,33 @@ export default {
   data() {
     return {
       stopwatches: [],
-      stopwatchTitleInput: 'Untitled'
+      stopwatchTitleInput: ''
     }
   },
-  created: async function() {
-    const result = await axios.get('http://localhost:3000/stopwatch');
+  mounted: async function() {
+    const result = await http.get('/stopwatch');
     this.stopwatches = result.data;
     console.log(this.stopwatches);
+  },
+  methods: {
+    addStopwatch: async function() {
+      let data = {
+        title: this.stopwatchTitleInput,
+        time: 0,
+        running: false,
+        date: new Date(),
+      };
+
+      http.post(`/stopwatch`, data);
+      
+      this.stopwatchTitleInput = "";   
+    },
+    resetAllStopwatch: async function(){
+      var r = confirm("Anda yakin akan reset semua stopwatch ?" );
+      if (r == true) {
+        http.put(`/stopwatch/reset`);
+      }
+    }
   }
 };
 </script>

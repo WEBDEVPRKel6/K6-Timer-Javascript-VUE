@@ -17,7 +17,7 @@
           <button v-if="running" @click="handlePause" key="pause">Pause</button>
         </transition>
       </div>
-      <button class="close-btn box-shadow bold">&#10005;</button>
+      <button class="close-btn box-shadow bold" @click= "handleDelete(id)">&#10005;</button>
     </div>
     <transition name="fade">
       <div class="stopwatch-item-modal gradient" v-if="modalOpen">
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import http from "../http";
 import Time from "../utils/time";
 
 export default {
@@ -67,6 +68,7 @@ export default {
       displayTime: Time.toHHMMSS(this.stopwatch.time),
       timerInterval: "",
       modalOpen: false,
+      deleteStatus : false
     };
   },
   methods: {
@@ -80,7 +82,24 @@ export default {
     handlePause() {
       this.running = false;
       clearInterval(this.timerInterval);
+      this.updateData();
     },
+    handleDelete: async function(id){
+      var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
+      if (r == true) {
+        this.handlePause();
+        http.delete(`/stopwatch/delete/` + id);
+      }
+    },
+    updateData() {
+      let newdata = {
+        title: this.title,
+        time: this.time,
+        date: new Date(),
+        running: this.running,
+      };
+      http.put(`/stopwatch/update/` + this.id, newdata);
+    }
   },
 };
 </script>
