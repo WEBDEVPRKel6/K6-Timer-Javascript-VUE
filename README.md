@@ -40,6 +40,7 @@ This project is a mini project as an assignment for the Web Development course. 
 
 * Adding a new stopwatch for the new task.
 * Adding a name to each stopwatch.
+* Pause & continue stopwatch.
 * Deleting stopwatch.
 * Reset all stopwatch.
 * Running in background. The stopwatch will still run even if you close the tab.
