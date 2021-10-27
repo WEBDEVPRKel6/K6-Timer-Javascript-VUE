@@ -16,6 +16,10 @@ export default {
 </script>
 
 <style>
+:root {
+  --danger-red: #db7074;
+}
+
 body,
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -33,9 +37,14 @@ button {
   border: none;
   border-radius: 8px;
   padding: 0.5rem 2rem;
-  font-family: 'Roboto', sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  color: #3C4F6F;
+  font-family: "Roboto", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  color: #3c4f6f;
+}
+
+.danger-red {
+  color: var(--danger-red);
 }
 
 .mb1 {
@@ -46,12 +55,28 @@ button {
   margin-bottom: 2rem;
 }
 
+.mb4 {
+  margin-bottom: 4rem;
+}
+
+.mlr1 {
+  margin: 0 1rem;
+}
+
 .bold {
   font-weight: 700;
 }
 
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .box-shadow {
-  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .gradient {
@@ -86,5 +111,26 @@ button {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+/* Transition animations */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

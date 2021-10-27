@@ -143,17 +143,43 @@ export default {
   align-items: center;
   position: relative;
 }
-
 .stopwatch-item-content {
   text-align: start;
 }
-
 .close-btn {
   position: absolute;
   width: 20px;
   height: 20px;
   top: -10px;
   right: -10px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+.stopwatch-item-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+.circle {
+  background: white;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+}
+.close-btn-modal {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 25px;
+  right: 25px;
   border: none;
   border-radius: 50%;
   padding: 0;

@@ -73,41 +73,34 @@ export default {
   width: 80%;
   margin: 0 auto;
 }
-
 .reset-btn {
   padding: 0.4rem 2rem;
   background: #ffff;
   border: none;
-  color: #DB7074;
   border-radius: 3px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
 .form {
   width: 100%;
   display: flex;
 }
-
 .form input {
   width: 70%;
   margin-right: 1rem;
   text-align: center;
-  color: #9E9E9E;
+  color: #9e9e9e;
 }
-
 .form button {
   width: 30%;
 }
-
 .form input,
 .form button {
   padding: 0.4rem 0.5rem;
   border: 0;
   border-radius: 3px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
-@media (min-width:1080px) {
+@media (min-width: 1080px) {
   .container {
     width: 40%;
   }
