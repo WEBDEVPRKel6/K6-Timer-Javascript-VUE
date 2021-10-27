@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/WEBDEVPRKel6/K6-Timer-Javascript-VUE">
-    <img src="icon.png" alt="Logo" width="70" height="70">
+    <img src="icon.png" alt="Logo" width="90" height="90">
   </a>
 
   <h3 align="center">Stopwatch - The 6th Group</h3>
