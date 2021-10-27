@@ -36,11 +36,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is a mini project as an assignment for the Web Development course. In this project, we are making a stopwatch for calculating the time that students need to do their tasks. This stopwatch has some features, those are:
+This project is a mini project as an assignment for the Web Development course. In this project, we are making a Front End for stopwatch application that can be used to calculate the time that students need to do their tasks. This stopwatch has some features, those are:
 
 * Adding a new stopwatch for the new task.
-* Deleting stopwatch.
 * Adding a name to each stopwatch.
+* Deleting stopwatch.
+* Reset all stopwatch.
 * Running in background. The stopwatch will still run even if you close the tab.
 
 This project still needs some improvements and we are still working on it. We accept constructive criticism and suggestions to improve the quality of the stopwatch that we make.
@@ -85,7 +86,7 @@ You can do this in VSC or in your Command Prompt
 
 This application can help you calculate the amount of time to do your task, so you don't have to calculate manually. This helps you especially when you need to report how long it took you to do some task. You can also add a new stopwatch as much as your tasks.
 1. Give a title to your stopwatch, e.g. "Math Assignment".
-2. Click the `Add new` button.
+2. Click the `+` button.
 3. Click the `Start` button to starting the stopwatch.
 4. To pause the stopwatch, you can click the `Pause` button.
 5. To stop the stopwatch, you can click the `Stop` button.
