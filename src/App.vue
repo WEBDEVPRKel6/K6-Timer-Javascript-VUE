@@ -17,7 +17,7 @@ export default {
 
 <style>
 :root {
-  --danger-red: #DB7074;
+  --danger-red: #db7074;
 }
 
 body,
@@ -37,9 +37,10 @@ button {
   border: none;
   border-radius: 8px;
   padding: 0.5rem 2rem;
-  font-family: 'Roboto', sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  color: #3C4F6F;
+  font-family: "Roboto", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  color: #3c4f6f;
 }
 
 .danger-red {
@@ -74,7 +75,8 @@ button {
 }
 
 .box-shadow {
-  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(0, 0, 0, 0.301) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .gradient {
@@ -111,15 +113,19 @@ button {
   margin-top: 60px;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
+/* Transition animations */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 
-.list-enter-active, .list-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: all 1s;
 }
 

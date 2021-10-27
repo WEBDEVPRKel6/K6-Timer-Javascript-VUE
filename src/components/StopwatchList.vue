@@ -10,31 +10,34 @@
       </form>
     </div>
     <transition-group name="list" tag="div">
-      <StopwatchListItem :stopwatch="stopwatch" v-for="stopwatch in stopwatches" :key="stopwatch.id"/>
+      <StopwatchListItem
+        :stopwatch="stopwatch"
+        v-for="stopwatch in stopwatches"
+        :key="stopwatch.id"
+      />
     </transition-group>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import StopwatchListItem from './StopwatchListItem.vue'
+import StopwatchListItem from "./StopwatchListItem.vue";
+import { fetchData } from "../api/API";
 
 export default {
   name: "StopwatchList",
   components: {
-    StopwatchListItem
+    StopwatchListItem,
   },
   data() {
     return {
       stopwatches: [],
-      stopwatchTitleInput: 'Untitled'
-    }
+      stopwatchTitleInput: "Untitled",
+    };
   },
-  created: async function() {
-    const result = await axios.get('http://localhost:3000/stopwatch');
+  async created() {
+    const result = await fetchData();
     this.stopwatches = result.data;
-    console.log(this.stopwatches);
-  }
+  },
 };
 </script>
 
@@ -49,7 +52,7 @@ export default {
   background: #ffff;
   border: none;
   border-radius: 3px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 form {
@@ -61,21 +64,22 @@ form input {
   width: 70%;
   margin-right: 1rem;
   text-align: center;
-  color: #9E9E9E;
+  color: #9e9e9e;
 }
 
 form button {
   width: 30%;
 }
 
-form input, form button {
+form input,
+form button {
   padding: 0.4rem 0.5rem;
   border: 0;
   border-radius: 3px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-@media (min-width:1080px) {
+@media (min-width: 1080px) {
   .container {
     width: 40%;
   }

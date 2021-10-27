@@ -20,6 +20,7 @@
       <button class="close-btn box-shadow bold">&#10005;</button>
     </div>
     <transition name="fade">
+      <!-- Not yet component based, still a lotta bugs -->
       <div class="stopwatch-item-modal gradient" v-if="modalOpen">
         <div class="mb4">
           <h1>{{ title }}</h1>
@@ -29,10 +30,20 @@
         </div>
         <div class="mb4">
           <transition name="fade" mode="out-in">
-            <button class="mlr1" v-if="!running" @click="handleStart" key="start">
+            <button
+              class="mlr1"
+              v-if="!running"
+              @click="handleStart"
+              key="start"
+            >
               {{ time > 0 ? "Continue" : "Start" }}
             </button>
-            <button class="mlr1" v-if="running" @click="handlePause" key="pause">
+            <button
+              class="mlr1"
+              v-if="running"
+              @click="handlePause"
+              key="pause"
+            >
               Pause
             </button>
           </transition>
@@ -43,6 +54,7 @@
           @click="modalOpen = false"
           class="close-btn-modal box-shadow bold"
         >
+          <!-- its an X symbol -->
           &#10005;
         </button>
       </div>
@@ -51,6 +63,7 @@
 </template>
 
 <script>
+import { updateData } from "../api/API";
 import Time from "../utils/time";
 
 export default {
@@ -67,6 +80,8 @@ export default {
       displayTime: Time.toHHMMSS(this.stopwatch.time),
       timerInterval: "",
       modalOpen: false,
+      // pls fix
+      timeDifference: (new Date().getTime() - new Date(this.stopwatch.date).getTime()) / 1000,
     };
   },
   methods: {
@@ -79,8 +94,29 @@ export default {
     },
     handlePause() {
       this.running = false;
+      console.log(this.running);
       clearInterval(this.timerInterval);
     },
+    async beforeUnload() {
+      const data = {
+        title: this.title,
+        time: this.time,
+        date: new Date(),
+        running: this.running,
+      };
+
+      await updateData(this.id, data);
+    },
+  },
+  created() {
+    // refresh/close is not counted as destroyed in vue, so here we are using beforeunload
+    window.addEventListener("beforeunload", () => this.beforeUnload());
+
+    if (this.running) {
+      // idk why this doesn't work
+      // this.time = this.time + this.timeDifference;
+      this.handleStart();
+    }
   },
 };
 </script>
