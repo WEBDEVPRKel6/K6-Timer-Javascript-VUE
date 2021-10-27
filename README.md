@@ -78,9 +78,21 @@ This project still needs some improvements and we are still working on it. We ac
 6. Stop Stopwatch
 
 * Bug / Not Finished
-1. Non-Parralel running stopwatch (Bugged)
+1. Non-Parralel running stopwatch (Bugged)]
 
-### Built With
+## Preview Project
+
+*Main Menu Preview
+![image](https://user-images.githubusercontent.com/61398214/139112022-776dd645-f45f-4773-852f-071675e4fb04.png)
+
+*Focused Stopwatch Preview
+![image](https://user-images.githubusercontent.com/61398214/139112144-e94ea85b-6f12-4866-81f6-4d988023f80b.png)
+
+*Stopped Focused Stopwatch Preview
+![image](https://user-images.githubusercontent.com/61398214/139112401-b1cb1d7e-0031-4544-85a4-f2ea23f23ea0.png)
+
+
+## Built With
 
 In this mini project, we use several tools, those are:
 We are using:
