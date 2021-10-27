@@ -134,17 +134,15 @@ export default {
 
       this.running = false;
       this.time = 0;
-      document.querySelector("#stopwatch-value-box").innerText = Time.toHHMMSS(
-        this.time
-      );
-      document.querySelector("#stopwatch-value-circle").innerText = Time.toHHMMSS(
-        this.time
-      );
+      this.displayTime = Time.toHHMMSS(this.time);
+      this.handlePause();
 
       const data = {
-        running : false,
-        time : 0
-      }
+        title: this.title,
+        time: this.time,
+        date: new Date(),
+        running: this.running,
+      };
 
       await updateData(this.id, data);
     },
