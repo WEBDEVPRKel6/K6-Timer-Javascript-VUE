@@ -1,20 +1,22 @@
 <template>
-  <div class="stopwatch-item mb2 gradient">
-    <div class="stopwatch-item-content">
-      <div class="mb1">
-        <h4> {{ title }} </h4>
+  <div>
+    <div class="stopwatch-item mb2 gradient">
+      <div class="stopwatch-item-content" @click="modalOpen = true">
+        <div class="mb1">
+          <h4>{{ title }}</h4>
+        </div>
+        <div>
+          <h1>{{ displayTime }}</h1>
+        </div>
       </div>
       <div>
-        <h1> {{ displayTime }} </h1>
+        <transition name="fade" mode="out-in">
+          <button v-if="!running" @click="handleStart" key="start">
+            {{ time > 0 ? "Continue" : "Start" }}
+          </button>
+          <button v-if="running" @click="handlePause" key="pause">Pause</button>
+        </transition>
       </div>
-<<<<<<< Updated upstream
-    </div>
-    <div>
-      <button v-if="!running" @click="handleStart"> {{ time > 0 ? 'Continue' : 'Start' }} </button>
-      <button v-if="running" @click="handlePause"> Pause </button>
-    </div>
-    <button class="close-btn box-shadow bold">&#10005;</button>
-=======
       <button class="close-btn box-shadow bold" @click="handleDelete(id)">&#10005;</button>
     </div>
     <transition name="fade">
@@ -46,7 +48,7 @@
             </button>
           </transition>
           <button class="mlr1" @click="handleStart">Stop</button>
-          <button class="mlr1 danger-red" @click="handleDelete(this.id)">Delete</button>
+          <button class="mlr1 danger-red" @click="handleStart">Delete</button>
         </div>
         <button
           @click="modalOpen = false"
@@ -57,17 +59,12 @@
         </button>
       </div>
     </transition>
->>>>>>> Stashed changes
   </div>
 </template>
 
 <script>
-<<<<<<< Updated upstream
-import Time from '../utils/time';
-=======
 import { updateData, deleteStopwatch } from "../api/API";
 import Time from "../utils/time";
->>>>>>> Stashed changes
 
 export default {
   name: 'StopwatchListItem',
@@ -81,8 +78,11 @@ export default {
       time: this.stopwatch.time,
       running: this.stopwatch.running,
       displayTime: Time.toHHMMSS(this.stopwatch.time),
-      timerInterval: '',
-    }
+      timerInterval: "",
+      modalOpen: false,
+      // pls fix
+      timeDifference: (new Date().getTime() - new Date(this.stopwatch.date).getTime()) / 1000,
+    };
   },
   methods: {
     handleStart: function() {
@@ -95,8 +95,6 @@ export default {
     handlePause: function() {
       this.running = false;
       clearInterval(this.timerInterval);
-<<<<<<< Updated upstream
-=======
     },
     handleDelete: async function(id){
       var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
@@ -129,7 +127,6 @@ export default {
       // idk why this doesn't work
       // this.time = this.time + this.timeDifference;
       this.handleStart();
->>>>>>> Stashed changes
     }
   }
 }

@@ -1,34 +1,27 @@
 <template>
   <div class="container">
     <div class="mb2">
-      <button class="reset-btn box-shadow">Reset All</button>
+      <button class="reset-btn box-shadow danger-red">Reset All</button>
     </div>
     <div class="mb2">
       <div class="form">
-<<<<<<< Updated upstream
-        <input class="box-shadow" id="stopwatch-title-form" v-model="stopwatchTitleInput" type="text" placeholder="Title" />
-        <button class="gradient box-shadow" @click="addStopwatch()">+</button>
-      </div>
-    </div>
-    <div>
-      <StopwatchListItem :stopwatch="stopwatch" v-for="stopwatch in stopwatches" :key="stopwatch.id"/>
-=======
         <input class="box-shadow" v-model="titleText" type="text" placeholder="Title" />
-        <button class="gradient box-shadow" @click="tambahStopwatch">+</button>
+        <button class="gradient box-shadow" @click="tambahStopwatch" type="submit">+</button>
       </div>
->>>>>>> Stashed changes
     </div>
+    <transition-group name="list" tag="div">
+      <StopwatchListItem
+        :stopwatch="stopwatch"
+        v-for="stopwatch in stopwatches"
+        :key="stopwatch.id"
+      />
+    </transition-group>
   </div>
 </template>
 
 <script>
-<<<<<<< Updated upstream
-import axios from 'axios';
-import StopwatchListItem from './StopwatchListItem.vue'
-=======
 import StopwatchListItem from "./StopwatchListItem.vue";
 import { fetchData, addStopwatch } from "../api/API";
->>>>>>> Stashed changes
 
 export default {
   name: "StopwatchList",
@@ -38,31 +31,15 @@ export default {
   data() {
     return {
       stopwatches: [],
-<<<<<<< Updated upstream
-      stopwatchTitleInput: 'Untitled'
-    }
-=======
       stopwatchTitleInput: "Untitled",
       titleText: "",
       // StopwatchList buat list data Stopwatch delete tanpa relod
       stopwatchList: []
     };
->>>>>>> Stashed changes
   },
-  created: async function() {
-    const result = await axios.get('http://localhost:3000/stopwatch');
+  async created() {
+    const result = await fetchData();
     this.stopwatches = result.data;
-<<<<<<< Updated upstream
-    console.log(this.stopwatches);
-  },
-  methods: {
-    addStopwatch: async function() {
-      const newStopwatch = document.createElement("stop-watch");
-      newStopwatch.title = this.stopwatchTitleInput;
-
-      let data = {
-        title: this.stopwatchTitleInput,
-=======
     this.stopwatchList = result.data.map((stopwatch) => stopwatch.id);
     console.log(this.stopwatchList);
   },
@@ -70,24 +47,11 @@ export default {
     async tambahStopwatch(){
       const data = {
         title: this.titleText || "Untilted",
->>>>>>> Stashed changes
         time: 0,
         running: false,
         date: new Date(),
       };
 
-<<<<<<< Updated upstream
-      const resData = await axios.post(`http://localhost:3000/stopwatch`, data);
-      
-      //Pindah Kebawah, biar dapet id stopwatch baru dari DB
-      this.stopwatches.stopwatchIds.push(resData.data.response.id);
-      
-      newStopwatch.clockId = resData.data.response.id;
-      newStopwatch.setAttribute("id", `stopwatch-${resData.data.response.id}`);
-
-      this.stopwatches.insertBefore(newStopwatch, this.titleForm);
-      this.stopwatchTitleInput = "";
-=======
       await addStopwatch(data);
 
       this.titleText = "";
@@ -99,7 +63,6 @@ export default {
       this.stopwatches = result.data;
       this.stopwatchList = result.data.map((stopwatch) => stopwatch.id);
       console.log(this.stopwatchList);
->>>>>>> Stashed changes
     }
   }
 };
@@ -136,12 +99,8 @@ export default {
   width: 30%;
 }
 
-<<<<<<< Updated upstream
-.form input, form button {
-=======
 .form input,
 .form button {
->>>>>>> Stashed changes
   padding: 0.4rem 0.5rem;
   border: 0;
   border-radius: 3px;
