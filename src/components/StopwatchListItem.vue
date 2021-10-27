@@ -129,7 +129,7 @@ export default {
       if (this.time === 0) return;
 
       document.querySelector("#textStop").innerText = `Timer ${
-        this.time
+        this.title
       } sudah berjalan selama ${Time.toHHMMSS(this.time)}`;
 
       this.running = false;
