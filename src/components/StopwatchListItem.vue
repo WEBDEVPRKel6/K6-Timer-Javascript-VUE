@@ -8,7 +8,9 @@
       <div class="circle mb4 flex-center">
         <h1>{{ viewerActive ? displayTime : viewerDisplayTime }}</h1>
       </div>
-      <div class="mb4">
+
+      <!-- Buttons working if viewer is active -->
+      <div v-if="viewerActive" class="mb4">
         <transition name="fade" mode="out-in">
           <button class="mlr1" v-if="!running" @click="handleStart" key="start">
             {{ time > 0 ? "Continue" : "Start" }}
@@ -18,11 +20,24 @@
           </button>
         </transition>
         <button class="mlr1" @click="handleStop">Stop</button>
-        <button class="mlr1 danger-red" @click="handleDelete(viewerId)">
+        <button class="mlr1 danger-red" @click="handleDelete(id)">
           Delete
         </button>
       </div>
-      <button @click="viewerActive = false" class="mlr1">Deselect</button>
+      <button v-if="viewerActive" @click="viewerActive = false" class="mlr1">
+        Deselect
+      </button>
+
+      <!-- Buttons disabled if viewer is inactive -->
+      <div v-if="!viewerActive" class="mb4">
+        <transition name="fade" mode="out-in">
+          <button class="mlr1" disabled>Start</button>
+          <button class="mlr1" disabled>Pause</button>
+        </transition>
+        <button class="mlr1" disabled>Stop</button>
+        <button class="mlr1 danger-red" disabled>Delete</button>
+      </div>
+      <button v-if="!viewerActive" disabled>Deselect</button>
     </div>
 
     <!-- Right Side Layout -->
@@ -85,7 +100,6 @@ export default {
     },
     handlePause() {
       this.running = false;
-      console.log(this.running);
       clearInterval(this.timerInterval);
     },
     handleStop() {
@@ -120,8 +134,7 @@ export default {
     window.addEventListener("beforeunload", () => this.beforeUnload());
 
     if (this.running) {
-      // idk why this doesn't work
-      // this.time = this.time + this.timeDifference;
+      this.time = this.time + parseInt(this.timeDifference);
       this.handleStart();
     }
   },
