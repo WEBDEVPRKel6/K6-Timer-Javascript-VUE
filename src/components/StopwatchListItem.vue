@@ -51,7 +51,7 @@
             </button>
           </transition>
           <button class="mlr1" @click="handleStop">Stop</button>
-          <button class="mlr1 danger-red" @click="handleStart">Delete</button>
+          <button class="mlr1 danger-red" @click="handleDelete(id)">Delete</button>
         </div>
         <button
           @click="modalOpen = false"
