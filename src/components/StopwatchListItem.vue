@@ -67,6 +67,7 @@
 
 <script>
 import { updateData, deleteStopwatch } from "../api/API";
+import { delId, getIdList } from "./StopwatchList.vue";
 import Time from "../utils/time";
 
 export default {
@@ -83,7 +84,7 @@ export default {
       displayTime: Time.toHHMMSS(this.stopwatch.time),
       timerInterval: "",
       viewerActive: false,
-      // pls fix
+      // Menghitung waktu / lama ketika stopwatch ditutup.
       timeDifference:
         (new Date().getTime() - new Date(this.stopwatch.date).getTime()) / 1000,
       viewerTitle: "--",
@@ -91,6 +92,7 @@ export default {
     };
   },
   methods: {
+    // Handling action to start the stopwatch.
     handleStart() {
       this.running = true;
       this.timerInterval = setInterval(() => {
@@ -98,26 +100,56 @@ export default {
         this.displayTime = Time.toHHMMSS(this.time);
       }, 1000);
     },
+    // Handling action to pause the stopwatch.
     handlePause() {
       this.running = false;
       clearInterval(this.timerInterval);
     },
-    handleStop() {
-      this.running = false;
-      clearInterval(this.timerInterval);
-    },
+    // Handling action to delete the stopwatch.
     handleDelete: async function (id) {
       var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
       if (r == true) {
         this.handlePause();
         await deleteStopwatch(id);
+
         // destroy the vue listeners, etc
         this.$destroy();
 
         // remove the element from the DOM
         this.$el.parentNode.removeChild(this.$el);
+
+        delId(id);
       }
     },
+    // Handling action nonParalel stopwatch [BUG]
+    async handleNonParallel(id) {
+      let stopwatchList = getIdList(id);
+      return stopwatchList;
+    },
+    // Handling action to stop the stopwatch.
+    async handleStop() {
+      if (this.time === 0) return;
+
+      document.querySelector("#textStop").innerText = `Timer ${
+        this.title
+      } sudah berjalan selama ${Time.toHHMMSS(this.time)}`;
+
+      this.running = false;
+      this.time = 0;
+      document.querySelector("#stopwatch-value-box").innerText = Time.toHHMMSS(
+        this.time
+      );
+      document.querySelector("#stopwatch-value-circle").innerText =
+        Time.toHHMMSS(this.time);
+
+      const data = {
+        running: false,
+        time: 0,
+      };
+
+      await updateData(this.id, data);
+    },
+    // Function yang berfungsi untuk melakukan update data ketika windows / tab ditutup (unload).
     async beforeUnload() {
       const data = {
         title: this.title,

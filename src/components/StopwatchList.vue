@@ -46,6 +46,22 @@ import {
   deleteAllStopwatch,
 } from "../api/API";
 
+// Mengambil data berupa id dari stopwatch yang ada.
+let stopwatchList = [];
+export function delId(id) {
+  for (var i = 0; i < stopwatchList.length; i++) {
+    if (id == stopwatchList[i]) {
+      stopwatchList.splice(i, 1);
+    }
+  }
+  console.log(stopwatchList);
+}
+
+// Delete elemen list id stopwatch.
+export function getIdList() {
+  return stopwatchList;
+}
+
 export default {
   name: "StopwatchList",
   components: {
@@ -56,10 +72,10 @@ export default {
       stopwatches: [],
       stopwatchTitleInput: "Untitled",
       titleText: "",
-      stopwatchList: [],
     };
   },
   methods: {
+    // Function yang digunakan untuk menambah stopwatch.
     async tambahStopwatch() {
       const data = {
         title: this.titleText || "Untilted",
@@ -74,17 +90,27 @@ export default {
 
       this.refreshData();
     },
-    handleResetAll() {
-      resetTimeAll();
+    // Function yang digunakan untuk melakukan reset ke semua stopwatch yang ada (time == 0 dan running == false).
+    async handleResetAll() {
+      var r = confirm("Anda yakin reset semua stopwatch ? ");
+      if (r == true) {
+        await resetTimeAll();
+        this.refreshData();
+      }
     },
-    handleDeleteAll() {
-      deleteAllStopwatch();
+    // Function untuk delete semua stopwatch yang ada.
+    async handleDeleteAll() {
+      var r = confirm("Anda yakin menghapus semua stopwatch ? ");
+      if (r == true) {
+        await deleteAllStopwatch();
+        this.refreshData();
+      }
     },
+    // Function untuk refresh html ketika action terjadi.
     async refreshData() {
       const result = await fetchData();
       this.stopwatches = result.data;
-      this.stopwatchList = result.data.map((stopwatch) => stopwatch.id);
-      console.log(this.stopwatchList);
+      stopwatchList = result.data.map((stopwatch) => stopwatch.id);
     },
   },
   async created() {
