@@ -1,28 +1,3 @@
-# vue-stopwatch
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-=======
 <!-- PROJECT SHIELDS -->
 # K6-Timer-Javascript-VUEJS 
 
@@ -90,6 +65,20 @@ This project is a mini project as an assignment for the Web Development course. 
 * Running in background. The stopwatch will still run even if you close the tab.
 
 This project still needs some improvements and we are still working on it. We accept constructive criticism and suggestions to improve the quality of the stopwatch that we make.
+
+## Progress Project
+
+[27-10-2021 - Last Commit]
+* Done
+1. Read Stopwatch
+2. Create Stopwatch
+3. Delete Stopwatch by ID
+4. Delete Stopwatch ALL
+5. Reset Stopwatch ALL
+6. Stop Stopwatch
+
+* Bug / Not Finished
+1. Non-Parralel running stopwatch (Bugged)
 
 ### Built With
 
