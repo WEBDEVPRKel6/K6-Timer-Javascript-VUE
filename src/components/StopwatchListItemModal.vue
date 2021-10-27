@@ -15,8 +15,8 @@
           Pause
         </button>
       </transition>
-      <button class="mlr1">Stop</button>
-      <button class="mlr1 danger-red">Delete</button>
+      <button class="mlr1" @click="handleStop" key="stop">Stop</button>
+      <button class="mlr1 danger-red" @click="handleDelete(id)" key="delete">Delete</button>
     </div>
     <button @click="modalOpen = !modalOpen" class="close-btn-modal box-shadow bold">
       &#10005;
@@ -28,12 +28,15 @@
 export default {
   name: "StopwatchListItemModal",
   props: {
+    id: Number,
     modalOpen: Boolean,
     title: String,
     displayTime: String,
     time: Number,
     handleStart: Function,
     handlePause: Function,
+    handleDelete: Function,
+    handleStop: Function,
     running: Boolean,
   },
 };

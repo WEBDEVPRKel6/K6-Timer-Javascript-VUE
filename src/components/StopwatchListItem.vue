@@ -36,8 +36,8 @@
               Pause
             </button>
           </transition>
-          <button class="mlr1" @click="handleStart">Stop</button>
-          <button class="mlr1 danger-red" @click="handleStart">Delete</button>
+          <button class="mlr1" @click="handleStart" key="stop">Stop</button>
+          <button class="mlr1 danger-red" @click="handleStart" key="delete">Delete</button>
         </div>
         <button
           @click="modalOpen = false"
@@ -88,8 +88,13 @@ export default {
       var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
       if (r == true) {
         this.handlePause();
+        this.modalOpen= false,
         http.delete(`/stopwatch/delete/` + id);
       }
+    },
+    handleStop(){
+      this.time = 0;
+      this.handlePause();
     },
     updateData() {
       let newdata = {
