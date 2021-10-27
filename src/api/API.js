@@ -18,6 +18,30 @@ export async function updateData(id, data) {
   }
 }
 
+export async function addStopwatch(data) {
+  try {
+    return axios.post(`${BASE_URL}/stopwatch`, data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteStopwatch(id) {
+  try {
+    return axios.delete(`${BASE_URL}/stopwatch/delete/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteAllStopwatch() {
+  try {
+    return axios.delete(`${BASE_URL}/stopwatch/delete`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function resetTimeAll() {
   try {
     return axios.put(`${BASE_URL}/stopwatch/reset`);

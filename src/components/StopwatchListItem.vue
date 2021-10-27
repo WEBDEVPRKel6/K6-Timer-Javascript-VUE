@@ -1,7 +1,33 @@
 <template>
   <div>
+    <!-- Left Side Layout -->
+    <div class="stopwatch-item-modal gradient vw50">
+      <div class="mb4">
+        <h1>{{ viewerActive ? title : viewerTitle }}</h1>
+      </div>
+      <div class="circle mb4 flex-center">
+        <h1>{{ viewerActive ? displayTime : viewerDisplayTime }}</h1>
+      </div>
+      <div class="mb4">
+        <transition name="fade" mode="out-in">
+          <button class="mlr1" v-if="!running" @click="handleStart" key="start">
+            {{ time > 0 ? "Continue" : "Start" }}
+          </button>
+          <button class="mlr1" v-if="running" @click="handlePause" key="pause">
+            Pause
+          </button>
+        </transition>
+        <button class="mlr1" @click="handleStop">Stop</button>
+        <button class="mlr1 danger-red" @click="handleDelete(viewerId)">
+          Delete
+        </button>
+      </div>
+      <button @click="viewerActive = false" class="mlr1">Deselect</button>
+    </div>
+
+    <!-- Right Side Layout -->
     <div class="stopwatch-item mb2 gradient">
-      <div class="stopwatch-item-content" @click="modalOpen = true">
+      <div class="stopwatch-item-content" @click="viewerActive = true">
         <div class="mb1">
           <h4>{{ title }}</h4>
         </div>
@@ -17,54 +43,15 @@
           <button v-if="running" @click="handlePause" key="pause">Pause</button>
         </transition>
       </div>
-      <button class="close-btn box-shadow bold">&#10005;</button>
+      <button class="close-btn box-shadow bold" @click="handleDelete(id)">
+        &#10005;
+      </button>
     </div>
-    <transition name="fade">
-      <!-- Not yet component based, still a lotta bugs -->
-      <div class="stopwatch-item-modal gradient" v-if="modalOpen">
-        <div class="mb4">
-          <h1>{{ title }}</h1>
-        </div>
-        <div class="circle mb4 flex-center">
-          <h1>{{ displayTime }}</h1>
-        </div>
-        <div class="mb4">
-          <transition name="fade" mode="out-in">
-            <button
-              class="mlr1"
-              v-if="!running"
-              @click="handleStart"
-              key="start"
-            >
-              {{ time > 0 ? "Continue" : "Start" }}
-            </button>
-            <button
-              class="mlr1"
-              v-if="running"
-              @click="handlePause"
-              key="pause"
-            >
-              Pause
-            </button>
-          </transition>
-          <button class="mlr1" @click="handleStart">Stop</button>
-          <button class="mlr1 danger-red" @click="handleReset">Reset</button>
-          <button class="mlr1 danger-red" @click="handleStart">Delete</button>
-        </div>
-        <button
-          @click="modalOpen = false"
-          class="close-btn-modal box-shadow bold"
-        >
-          <!-- its an X symbol -->
-          &#10005;
-        </button>
-      </div>
-    </transition>
   </div>
 </template>
 
 <script>
-import { updateData } from "../api/API";
+import { updateData, deleteStopwatch } from "../api/API";
 import Time from "../utils/time";
 
 export default {
@@ -80,10 +67,12 @@ export default {
       running: this.stopwatch.running,
       displayTime: Time.toHHMMSS(this.stopwatch.time),
       timerInterval: "",
-      modalOpen: false,
+      viewerActive: false,
       // pls fix
       timeDifference:
         (new Date().getTime() - new Date(this.stopwatch.date).getTime()) / 1000,
+      viewerTitle: "--",
+      viewerDisplayTime: "-- : -- : --",
     };
   },
   methods: {
@@ -99,10 +88,21 @@ export default {
       console.log(this.running);
       clearInterval(this.timerInterval);
     },
-    handleReset() {
+    handleStop() {
       this.running = false;
-      this.time = 0;
       clearInterval(this.timerInterval);
+    },
+    handleDelete: async function (id) {
+      var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
+      if (r == true) {
+        this.handlePause();
+        await deleteStopwatch(id);
+        // destroy the vue listeners, etc
+        this.$destroy();
+
+        // remove the element from the DOM
+        this.$el.parentNode.removeChild(this.$el);
+      }
     },
     async beforeUnload() {
       const data = {
@@ -184,5 +184,9 @@ export default {
   border: none;
   border-radius: 50%;
   padding: 0;
+}
+
+.vw50 {
+  width: 50vw;
 }
 </style>

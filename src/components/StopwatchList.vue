@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container float-right mr5percent">
     <div class="mb2">
       <button
         class="m1r1 reset-btn box-shadow danger-red"
@@ -7,14 +7,24 @@
       >
         Reset All
       </button>
-      <button class="reset-btn box-shadow danger-red" @click="handleResetAll">
+      <button class="reset-btn box-shadow danger-red" @click="handleDeleteAll">
         Delete All
       </button>
     </div>
     <div class="mb2">
       <form>
-        <input class="box-shadow" type="text" placeholder="Title" />
-        <button class="gradient box-shadow" type="submit">+</button>
+        <input
+          class="box-shadow"
+          type="text"
+          placeholder="Stopwatch Title e.g. WebDev21"
+        />
+        <button
+          class="gradient box-shadow"
+          @click="tambahStopwatch"
+          type="submit"
+        >
+          +
+        </button>
       </form>
     </div>
     <transition-group name="list" tag="div">
@@ -29,7 +39,12 @@
 
 <script>
 import StopwatchListItem from "./StopwatchListItem.vue";
-import { fetchData, resetTimeAll } from "../api/API";
+import {
+  fetchData,
+  addStopwatch,
+  resetTimeAll,
+  deleteAllStopwatch,
+} from "../api/API";
 
 export default {
   name: "StopwatchList",
@@ -40,16 +55,43 @@ export default {
     return {
       stopwatches: [],
       stopwatchTitleInput: "Untitled",
+      titleText: "",
+      stopwatchList: [],
     };
   },
   methods: {
+    async tambahStopwatch() {
+      const data = {
+        title: this.titleText || "Untilted",
+        time: 0,
+        running: false,
+        date: new Date(),
+      };
+
+      await addStopwatch(data);
+
+      this.titleText = "";
+
+      this.refreshData();
+    },
     handleResetAll() {
       resetTimeAll();
+    },
+    handleDeleteAll() {
+      deleteAllStopwatch();
+    },
+    async refreshData() {
+      const result = await fetchData();
+      this.stopwatches = result.data;
+      this.stopwatchList = result.data.map((stopwatch) => stopwatch.id);
+      console.log(this.stopwatchList);
     },
   },
   async created() {
     const result = await fetchData();
     this.stopwatches = result.data;
+    this.stopwatchList = result.data.map((stopwatch) => stopwatch.id);
+    console.log(this.stopwatchList);
   },
 };
 </script>
@@ -96,5 +138,9 @@ form button {
   .container {
     width: 40%;
   }
+}
+
+.mr5percent {
+  margin-right: 5%;
 }
 </style>
