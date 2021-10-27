@@ -16,6 +16,9 @@ export default {
 </script>
 
 <style>
+
+@import url('http://fonts.cdnfonts.com/css/ds-digital');
+
 :root {
   --danger-red: #db7074;
 }
@@ -133,4 +136,9 @@ button {
   opacity: 0;
   transform: translateY(30px);
 }
+
+.time-font {
+  font-family: 'DS-Digital', sans-serif;
+}
+
 </style>

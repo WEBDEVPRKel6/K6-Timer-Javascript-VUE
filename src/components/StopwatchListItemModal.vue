@@ -3,7 +3,7 @@
     <div class="mb4">
       <h1>{{ title }}</h1>
     </div>
-    <div class="circle mb4 flex-center">
+    <div class="circle mb4 flex-center time-font">
       <h1>{{ displayTime }}</h1>
     </div>
     <div class="mb4">
@@ -15,7 +15,7 @@
           Pause
         </button>
       </transition>
-      <button class="mlr1">Stop</button>
+      <button class="mlr1" @click="handlePause">Stop</button>
       <button class="mlr1 danger-red">Delete</button>
     </div>
     <button @click="modalOpen = !modalOpen" class="close-btn-modal box-shadow bold">

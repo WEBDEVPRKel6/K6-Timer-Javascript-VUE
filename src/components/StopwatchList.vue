@@ -33,7 +33,7 @@ import {
   deleteAllStopwatch,
 } from "../api/API";
 
-// Mengambil data id dari stopwatch yang ada.
+// Mengambil data berupa id dari stopwatch yang ada.
 let stopwatchList = [];
 export function delId(id){
   for(var i = 0; i < stopwatchList.length; i++){ 
@@ -59,7 +59,7 @@ export default {
       stopwatches: [],
       stopwatchTitleInput: "Untitled",
       titleText: "",
-      // StopwatchList buat list data Stopwatch delete tanpa relod
+      // StopwatchList digunakan untuk list data Stopwatch delete tanpa reload
     };
   },
   async created() {
@@ -69,7 +69,7 @@ export default {
     console.log(stopwatchList);
   },
   methods: {
-    // Function tambah stopwatch.
+    // Function yang digunakan untuk menambah stopwatch.
     async tambahStopwatch(){
       const data = {
         title: this.titleText || "Untilted",
@@ -84,7 +84,7 @@ export default {
 
       this.refreshData();
     },
-    // Function reset semua stopwatch yang ada menjadi 0 dan false.
+    // Function yang digunakan untuk melakukan reset ke semua stopwatch yang ada (time == 0 dan running == false).
     async handleResetAll() {
       var r = confirm("Anda yakin reset semua stopwatch ? ");
       if (r == true) {
@@ -92,7 +92,7 @@ export default {
         this.refreshData();
       }
     },
-    // Function delete semua stopwatch yang ada.
+    // Function untuk delete semua stopwatch yang ada.
     async handleDeleteAll() {
       var r = confirm("Anda yakin menghapus semua stopwatch ? ");
       if (r == true) {

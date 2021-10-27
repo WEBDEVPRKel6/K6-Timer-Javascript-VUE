@@ -5,7 +5,7 @@
         <div class="mb1">
           <h4>{{ title }}</h4>
         </div>
-        <div>
+        <div class="time-font">
           <h1 id="stopwatch-value-box">{{ displayTime }}</h1>
         </div>
       </div>
@@ -25,7 +25,7 @@
         <div class="mb4">
           <h1>{{ title }}</h1>
         </div>
-        <div id="stopwatch-value-circle" class="circle mb4 flex-center">
+        <div id="stopwatch-value-circle" class="circle mb4 flex-center time-font">
           <h1>{{ displayTime }}</h1>
         </div>
         <div class="mb4">
@@ -89,7 +89,7 @@ export default {
     };
   },
   methods: {
-    // Handling action start stopwatch.
+    // Handling action to start the stopwatch.
     handleStart: function() {
       this.running = true;
       this.timerInterval = setInterval(() => {
@@ -97,12 +97,12 @@ export default {
         this.displayTime = Time.toHHMMSS(this.time);
       }, 1000);
     },
-    // Handling action pause stopwatch.
+    // Handling action to pause the stopwatch.
     handlePause: function() {
       this.running = false;
       clearInterval(this.timerInterval);
     },
-    // Handling action delete stopwatch.
+    // Handling action to delete the stopwatch.
     handleDelete: async function(id){
       var r = confirm("Anda yakin menghapus stopwatch : " + this.title);
       if (r == true) {
@@ -124,7 +124,7 @@ export default {
       let stopwatchList = getIdList(id);
       return stopwatchList;
     },
-    // Handling action stop stopwatch.
+    // Handling action to stop the stopwatch.
     async handleStop() {
       if (this.time === 0) return;
 
@@ -148,7 +148,7 @@ export default {
 
       await updateData(this.id, data);
     },
-    // Function yang berfungsi melakukan update data ketika windows / tab ditutup (unload).
+    // Function yang berfungsi untuk melakukan update data ketika windows / tab ditutup (unload).
     async beforeUnload() {
       const data = {
         title: this.title,
